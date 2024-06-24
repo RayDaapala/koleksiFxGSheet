@@ -1,4 +1,4 @@
-=let(src;text(nilai;"000000000000000000");
+=let(src;text(abs(nilai);"000000000000000000");
 angka;vstack("1";"2";"3";"4";"5";"6";"7";"8";"9");
 bilangan;vstack("satu";"dua";"tiga";"empat";"lima";"enam";"tujuh";"delapan";"sembilan");
 digit1;{"";"puluh";"ratus";"ribu";"puluh";"ratus";"juta";"puluh";"ratus";"miliar";"puluh";"ratus";"triliun";"puluh";"ratus";"ribu";"puluh";"ratus"};
@@ -6,7 +6,7 @@ digit2;{"";"";"";"ribu";"";"";"juta";"";"";"miliar";"";"";"triliun";"";"";"";"";
 reversedString;arrayformula(mid(src;{sequence(18;1;18;-1)};1));
 arraypuluh;arrayformula(mid(src;sequence(17;1;17;-1);1));
 arrayratus;arrayformula(mid(src;sequence(16;1;16;-1);1));
-konversi;ifna(hstack(sequence(18);arrayformula(if(reversedString<>"0";xlookup(reversedString;angka;bilangan)&" "&digit1;"")&if((arraypuluh<>"0")+(arrayratus<>"0");digit2;"")));"");
+konversi;ifna(hstack(sequence(18);arrayformula(if(reversedString<>"0";xlookup(reversedString;angka;bilangan)&" "&digit1;"")&ifna(if((arraypuluh<>"0")+(arrayratus<>"0");digit2;""))));"");
 sortedString;textjoin(" ";1;index(sort(konversi;1;0);;2));
 substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(substitute(sortedString;"riburibu";"ribu");"jutajuta";"juta");"miliarmiliar";"miliar");"triliuntriliun";"triliun");"satu ratus";"seratus");"satu puluh";"sepuluh");"sepuluh satu";"sebelas");"sepuluh dua";"dua belas");"sepuluh tiga";"tiga belas");"sepuluh empat";"empat belas");"sepuluh lima";"lima belas");"sepuluh enam";"enam belas");"sepuluh tujuh";"tujuh belas");"sepuluh delapan";"delapan belas");"sepuluh sembilan";"sembilan belas"))
 
